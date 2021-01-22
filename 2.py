@@ -16,7 +16,7 @@ for x in passworld_list:
     if line[0] <= char_count <= line[1]:
         first_valid += 1
 
-    if (line[3][line[0] - 1] == line[2]) != (line[3][line[1] - 1] == line[2]):
+    if (line[3][line[0] - 1] == line[2]) ^ (line[3][line[1] - 1] == line[2]):
         second_valid += 1
 
 print(f'The number of first_valid password is: {first_valid}')
