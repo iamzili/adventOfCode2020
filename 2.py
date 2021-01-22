@@ -9,7 +9,7 @@ with open('2_input') as f:
 
 
 for x in passworld_list:
-    # e.g: [2, 6, 'p', 'gpwhqpbpgdrprbbp']
+    # line = [2, 6, 'p', 'gpwhqpbpgdrprbbp']
     line = [int(y) if y.isdigit() else y for y in re.sub("-|:", " ", x).split()]
     char_count = line[3].count(line[2])
 
