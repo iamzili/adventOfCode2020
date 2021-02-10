@@ -9,6 +9,7 @@ num_valid_passports = 0
 for x in batch_file:
     passport += x + " "
     if not x:
+        # generator expression
         if all(x in passport for x in fields):
             num_valid_passports += 1
         passport = ""
