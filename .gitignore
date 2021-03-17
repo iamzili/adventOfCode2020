@@ -1,1 +1,5 @@
 .vscode
+/pyenv
+__pycache__/
+*.py[cod]
+venv

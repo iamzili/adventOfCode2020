@@ -1,16 +1,19 @@
 import re
+from os import path
 
-with open('4_input') as f:
-    batch_file = [line.rstrip() for line in f]
-batch_file.append("")
+basedir = path.abspath(path.dirname(__file__))
+
+with open(f'{basedir}/day_4_input', 'r') as fd:
+    content = fd.read()
+    lines = content.split("\n\n")
+    batch_file = [line.replace("\n", " ") for line in lines]
 
 fields = ['byr','iyr','eyr','hgt','hcl','ecl','pid']
 valid_ecl = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
-passport = ""
-num_valid_passports_1 = 0
-num_valid_passports_2 = 0
+part1 = 0
+part2 = 0
 
-def validate(passport, field):
+def validate(field, passport):
     if field in passport:
         value = passport.split(field + ':')[1].split()[0]
         if field == 'byr':
@@ -45,21 +48,17 @@ def validate(passport, field):
     else:
         return 0
 
-for x in batch_file:
-    passport += x + " "
-    if not x:
-        # part1 - generator expression
-        if all(x in passport for x in fields):
-            num_valid_passports_1 += 1
-        # part 2
-        if all(validate(passport,x) for x in fields):
-            num_valid_passports_2 += 1
-        passport = ""
+for passport in batch_file:
+    # part1 - generator expression
+    if all(x in passport for x in fields):
+        part1 += 1
+    # part 2
+    if all(validate(x, passport) for x in fields):
+        part2 += 1
 
 
-print(f'Number of valid passports for Part 1: {num_valid_passports_1}')
-print(f'Number of valid passports for Part 2: {num_valid_passports_2}')
-
+print(f'Number of valid passports for Part 1: {part1}')
+print(f'Number of valid passports for Part 2: {part2}')
 
 
 

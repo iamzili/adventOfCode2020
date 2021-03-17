@@ -1,4 +1,11 @@
-with open('3_input') as f:
+from os import path
+
+basedir = path.abspath(path.dirname(__file__))
+
+part1 = 0
+part2 = 0
+
+with open(f'{basedir}/day_3_input') as f:
     my_map = [line.rstrip() for line in f]
 
 
@@ -28,5 +35,7 @@ def calc_trees(step_right, step_down):
     return num_tree
 
 
-print(f'Part one - number of trees: {calc_trees(3,1)}')
-print(f'Part two - number of trees: {calc_trees(1,1) * calc_trees(3,1) * calc_trees(5,1) * calc_trees(7,1) * calc_trees(1,2)}')
+part1 = calc_trees(3,1)
+part2 = calc_trees(1,1) * calc_trees(3,1) * calc_trees(5,1) * calc_trees(7,1) * calc_trees(1,2)
+print(f'Part one - number of trees: {part1}')
+print(f'Part two - number of trees: {part2}')
