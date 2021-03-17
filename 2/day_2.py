@@ -1,10 +1,13 @@
 import re
+from os import path
+
+basedir = path.abspath(path.dirname(__file__))
 
 passworld_list = []
-first_valid = 0
-second_valid = 0
+part1 = 0
+part2 = 0
 
-with open('2_input') as f:
+with open(f'{basedir}/day_2_input') as f:
     passworld_list = [line.rstrip() for line in f]
 
 
@@ -14,10 +17,10 @@ for x in passworld_list:
     char_count = line[3].count(line[2])
 
     if line[0] <= char_count <= line[1]:
-        first_valid += 1
+        part1 += 1
 
     if (line[3][line[0] - 1] == line[2]) ^ (line[3][line[1] - 1] == line[2]):
-        second_valid += 1
+        part2 += 1
 
-print(f'The number of first_valid password is: {first_valid}')
-print(f'The number of second_valid password is: {second_valid}')
+print(f'The number of part1 password is: {part1}')
+print(f'The number of part2 password is: {part2}')
